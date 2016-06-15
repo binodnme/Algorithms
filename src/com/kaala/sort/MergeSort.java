@@ -1,17 +1,11 @@
 package com.kaala.sort;
 
-import java.util.Arrays;
-
 public class MergeSort {
     public static int[] sort(int[] array) {
-        System.out.println("merge sort started");
         int p = 0;
         int q = array.length / 2 - 1;
         int r = array.length - 1;
-        return mergeSort(array, p, q, r);
-    }
 
-    private static int[] mergeSort(int[] array, int p, int q, int r) {
         int[] leftArray = new int[q - p + 1];
         int[] rightArray = new int[r - q];
         System.arraycopy(array, 0, leftArray, 0, q - p + 1);
@@ -21,19 +15,13 @@ public class MergeSort {
         int[] resultRight;
 
         if (leftArray.length > 1) {
-            int pl = 0;
-            int ql = leftArray.length / 2 - 1;
-            int rl = leftArray.length - 1;
-            resultLeft = mergeSort(leftArray, pl, ql, rl);
+            resultLeft = sort(leftArray);
         } else {
             resultLeft = new int[]{leftArray[0]};
         }
 
         if (rightArray.length > 1) {
-            int pr = 0;
-            int qr = rightArray.length / 2 - 1;
-            int rr = rightArray.length - 1;
-            resultRight = mergeSort(rightArray, pr, qr, rr);
+            resultRight = sort(rightArray);
         } else {
             resultRight = new int[]{rightArray[0]};
         }

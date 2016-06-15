@@ -11,17 +11,19 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class Main {
     public static void main(String[] args){
-//        int[] array = new int[]{2,4,5,1,8,10,7};
-        int[] array = getRandomIntegers(1000000);
-//        System.out.println("input array : "+ Arrays.toString(array));
-        int[] sortedArray =  InsertionSort.sort(array);
+        int[] array = getRandomIntegers(10000);
+        System.out.println("input array : "+ Arrays.toString(array));
+        long start = System.nanoTime();
+        int[] sortedArray =  MergeSort.sort(array);
+        long elapsedTime = System.nanoTime() - start;
+        System.out.println("elapsed time : "+elapsedTime);
         System.out.println("output array : "+Arrays.toString(sortedArray));
     }
 
     private static int[] getRandomIntegers(int size){
         int[] randomNumbers = new int[size];
         for (int i = 0; i<size; i++){
-            randomNumbers[i] = ThreadLocalRandom.current().nextInt(0, 1000001);
+            randomNumbers[i] = ThreadLocalRandom.current().nextInt(0, 10001);
         }
         return randomNumbers;
     }
