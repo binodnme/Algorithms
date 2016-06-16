@@ -1,4 +1,4 @@
-package com.kaala.sort;
+package com.kaala.java.sort;
 
 public class MergeSort {
     public static int[] sort(int[] array) {
@@ -26,14 +26,12 @@ public class MergeSort {
             resultRight = new int[]{rightArray[0]};
         }
 
-
         int resultSize = resultLeft.length + resultRight.length;
         int[] result = new int[resultSize];
 
         int index = -1;
         int i = 0;
         int j = 0;
-
 
         while ((i < resultLeft.length) && (j < resultRight.length)) {
             int leftValue = resultLeft[i];
@@ -51,15 +49,9 @@ public class MergeSort {
 
         if (index < resultSize - 1) {
             if (i == resultLeft.length) {
-                for (; j < resultRight.length; j++) {
-                    index++;
-                    result[index] = resultRight[j];
-                }
+                System.arraycopy(resultRight, j, result, ++index, resultRight.length - j);
             } else if (j == resultRight.length) {
-                for (; i < resultLeft.length; i++) {
-                    index++;
-                    result[index] = resultLeft[i];
-                }
+                System.arraycopy(resultLeft, i, result, ++index, resultLeft.length - i);
             }
         }
         return result;
