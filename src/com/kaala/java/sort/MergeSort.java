@@ -2,40 +2,30 @@ package com.kaala.java.sort;
 
 public class MergeSort {
     public static int[] sort(int[] array) {
-        int p = 0;
-        int q = array.length / 2 - 1;
-        int r = array.length - 1;
-
-        int[] leftArray = new int[q - p + 1];
-        int[] rightArray = new int[r - q];
-        System.arraycopy(array, 0, leftArray, 0, q - p + 1);
-        System.arraycopy(array, q + 1, rightArray, 0, r - q);
-
-        int[] resultLeft;
-        int[] resultRight;
-
-        if (leftArray.length > 1) {
-            resultLeft = sort(leftArray);
+        if (array.length == 1) {
+            return array;
         } else {
-            resultLeft = new int[]{leftArray[0]};
-        }
+            int left = array.length/2;
+            int[] leftArray = new int[left];
+            int[] rightArray = new int[array.length - left];
+            System.arraycopy(array, 0, leftArray, 0, left);
+            System.arraycopy(array, left, rightArray, 0, array.length - left);
 
-        if (rightArray.length > 1) {
-            resultRight = sort(rightArray);
-        } else {
-            resultRight = new int[]{rightArray[0]};
+            return combine(sort(leftArray), sort(rightArray));
         }
+    }
 
-        int resultSize = resultLeft.length + resultRight.length;
+    private static int[] combine(int[] sortedLeft, int[] sortedRight) {
+        int resultSize = sortedLeft.length + sortedRight.length;
         int[] result = new int[resultSize];
 
         int index = -1;
         int i = 0;
         int j = 0;
 
-        while ((i < resultLeft.length) && (j < resultRight.length)) {
-            int leftValue = resultLeft[i];
-            int rightValue = resultRight[j];
+        while ((i < sortedLeft.length) && (j < sortedRight.length)) {
+            int leftValue = sortedLeft[i];
+            int rightValue = sortedRight[j];
 
             index++;
             if (leftValue < rightValue) {
@@ -48,10 +38,10 @@ public class MergeSort {
         }
 
         if (index < resultSize - 1) {
-            if (i == resultLeft.length) {
-                System.arraycopy(resultRight, j, result, ++index, resultRight.length - j);
-            } else if (j == resultRight.length) {
-                System.arraycopy(resultLeft, i, result, ++index, resultLeft.length - i);
+            if (i == sortedLeft.length) {
+                System.arraycopy(sortedRight, j, result, ++index, sortedRight.length - j);
+            } else if (j == sortedRight.length) {
+                System.arraycopy(sortedLeft, i, result, ++index, sortedLeft.length - i);
             }
         }
         return result;

@@ -5,17 +5,20 @@ import com.kaala.java.sort.MergeSort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
-    public static void main(String[] args){
-        int[] array = getRandomIntegers(100);
+    public static void main(String[] args) throws InterruptedException {
+//        int[] array = getRandomIntegers(100000000);
+        List<Integer> array = getRandomIntegersList(100000000);
 //        System.out.println("input array : "+Arrays.toString(array));
         long start = System.nanoTime();
-        int[] sortedArray =  MergeSort.sort(array);
+//        int[] sortedArray =  MergeSort.sort(array);
+        Collections.sort(array);
         long elapsedTime = System.nanoTime() - start;
-        System.out.println("elapsed time : "+elapsedTime);
+        System.out.println("elapsed time : "+elapsedTime/1000000000.0);
 //        System.out.println("output array : "+Arrays.toString(sortedArray));
     }
 
