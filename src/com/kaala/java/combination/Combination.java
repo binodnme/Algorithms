@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author kaala on 9/1/16.
@@ -22,11 +23,8 @@ public class Combination {
     private static List<String> combine(String s, List<String> list) {
         List<String> result = new ArrayList<>();
         result.add(s);
-
-        for (String string: list){
-            result.add(string);
-            result.add(s+string);
-        }
+        result.addAll(list);
+        result.addAll(list.stream().map(string -> s + string).collect(Collectors.toList()));
         return result;
     }
 
