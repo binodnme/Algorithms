@@ -11,13 +11,10 @@ import java.util.stream.Collectors;
  */
 public class Combination {
     public static List<String> getCombination (List<String> list) {
-
-        if(list.size() == 2){
-            return combine(list.get(0), Arrays.asList(list.get(1)));
-        }
+        if(list.size() == 1)
+            return list;
 
         return combine(list.get(0), getCombination(list.subList(1,list.size())));
-
     }
 
     private static List<String> combine(String s, List<String> list) {
@@ -31,9 +28,6 @@ public class Combination {
     public static void main(String[] args){
         List<String> list = Arrays.asList("a","b","c","d","e","f");
         List<String> result = getCombination(list);
-        result.sort(String::compareTo);
-
-        System.out.println(result.size());
-
+        System.out.println(result);
     }
 }
