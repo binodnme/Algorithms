@@ -1,4 +1,4 @@
-package com.kaala.java.test;
+package com.kaala.java.combination.test;
 
 import java.util.ArrayList;
 import java.util.Arrays;

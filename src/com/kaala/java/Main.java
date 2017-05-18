@@ -1,13 +1,8 @@
 package com.kaala.java;
 
-import com.kaala.java.sort.BubbleSort;
-import com.kaala.java.sort.InsertionSort;
 import com.kaala.java.sort.MergeSort;
-import com.kaala.java.sort.QuickSort;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -15,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         long start = System.nanoTime();
 
-        int[] array = getRandomIntegers(10000000);
+        int[] array = getRandomIntegers(30000000);
 //        List<Integer> arrayList = getRandomIntegersList(10000000);
 
         //bubble sort
